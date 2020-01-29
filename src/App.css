@@ -1,0 +1,86 @@
+.App {
+  text-align: center;
+}
+body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.header-box_logo {
+  width: 20%;
+}
+.box_logo-item {
+  font-size: 2rem;
+  color: #c74350;
+}
+.header-navegation {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+}
+.navegation-box_list {
+  width: 100%;
+  height: 9vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+}
+.box_link-box_subList {
+  display: none;
+  padding: 0;
+}
+.box_subList-item_sublist {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+.box_list-box_link {
+  height: 80%;
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+.box_list-item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color:#000;
+  padding: 0 1rem;
+}
+.box_list-item:hover{
+  background-color: #c74350;
+ color: #ffffff
+}
+.item_sublist-link {
+  font-size: 1rem;
+  text-decoration: none;
+  color:#000
+}
+
+.box_link-linkitem {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color:#000;
+  padding: 0 1rem;
+}
+.box_link-linkitem:hover {
+  background-color: #c74350;
+  color: #ffffff
+}  
