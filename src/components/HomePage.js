@@ -1,6 +1,10 @@
 import React from 'react';
 import '../App.css';
 
+import Star0 from "../img/star0.svg"
+import Star1 from "../img/star1.svg"
+import Claquete from '../img/claquete.svg'
+
 import ImgBadboys from "../img/badboysList.jpeg"
 import ImgDeadpoll from "../img/deadpollList.jpg"
 
@@ -9,6 +13,11 @@ class HomePage extends React.Component {
         super(props);
 
         this.state = {
+            s1: null,
+            s2: null,
+            s3: null,
+            s4: null,
+            s5: null,
             menuOpen: false,
             menuItens: [ 'Quero ver', 'Já vistos'],
             titleLists: 'Minha lista:',
@@ -23,7 +32,8 @@ class HomePage extends React.Component {
                     "sendo enviado por sua mãe para matar Mike (Will Smith). Paola Nuñez assumirá" +
                     "o papel de Rite, a psicóloga criminal dura e engraçada que é recém-nomeada "+
                     "chefe da AMMO e ex-namorada de Mike.",
-                    img: ImgBadboys
+                    img: ImgBadboys,
+                    status: ""
                 },
                 {
                     name: "Deadpoll 2",
@@ -33,9 +43,10 @@ class HomePage extends React.Component {
                     "que é ser herói de verdade para salvá-lo. Para isso, ele recruta seu" + 
                     "velho amigo Colossus e forma o novo grupo X-Force, sempre com" +
                     "o apoio do fiel escudeiro Dopinder." ,
-                    img: ImgDeadpoll
+                    img: ImgDeadpoll,
+                    status: ""
                 }
-            ]
+            ],
         }
     }
 
@@ -44,6 +55,142 @@ class HomePage extends React.Component {
             menuOpen: !this.state.menuOpen
         })
     }
+
+    openModal = () => {
+        this.setState({
+            openModal: !this.state.openModal
+        })
+    }
+
+    resevName = (e) => {
+        // console.log(e.target.value)
+        this.setState({
+            name:e.target.value
+        })
+    }
+
+    resevDescription = (e) => {
+        this.setState({
+            description:e.target.value
+        })
+    }
+
+    resevStatus = (e) => {
+        this.setState({
+            status:e.target.value
+        })
+    }
+
+    resevImg = (e) => {
+        this.setState({
+            img:e.target.value
+        })
+    }
+    saveValue = (movie) => {
+        const { movies } = this.state;
+
+        movies.push(movie)
+        // console.log(movies)
+        this.openModal()
+    }
+
+    addMovie = (e) => {
+        e.preventDefault();
+        const { name, description, status, img, note } = this.state
+        this.saveValue({name, description, status, img, note})
+    }
+
+    avaliar = (star) => {
+        this.setState({
+            s1: document.getElementById("s1").src,
+            s2: document.getElementById("s2").src,
+            s3: document.getElementById("s3").src,
+            s4: document.getElementById("s4").src,
+            s5: document.getElementById("s5").src,
+        })
+        const { note } = this.state
+        this.saveValue({note})
+        console.log(this.state.s1)
+        // if (star == 5){ 
+        //     if ((this.state.s5.src == Star0) || (this.state.s5.src == "http://localhost:3000/static/media/star0.58c764d9.svg")) {
+        //     this.state.s1.src = Star1;
+        //     this.state.s2.src = Star1;
+        //     this.state.s3.src = Star1;
+        //     this.state.s4.src = Star1;
+        //     this.state.s5.src = Star1;
+        //     note = 5;
+        //     }
+        // } else {
+        //     this.state.s1.src = Star1;
+        //     this.state.s2.src = Star1;
+        //     this.state.s3.src = Star1;
+        //     this.state.s4.src = Star1;
+        //     this.state.s5.src = Star0;
+        //     note = 4;
+        // }
+
+    }
+
+    modal = () => (
+        <div className="container_opacyt">
+        <div className="container_opacyt-container_modal">
+          <figure className="container_modal-box_img">
+            <img className="box_img-item" src={Claquete}></img>
+          </figure>
+          <div className="container_modal-box_addMovie">
+            <div className="box_addMovie-box_titleClose">
+              <p className="box_titleClose-title">Adicionar novo filme:</p>
+              <a className="closeModal" href="#"><p className="box_titleClose-close" onClick={this.openModal}>X</p></a>
+            </div>
+            <form className="box_addMovie-form" onSubmit={this.addMovie}>
+              <label className="form-item_name legend_textArea">
+                Nome:
+                <input className="item_name-area_text text_area" onChange={this.resevName}></input>
+              </label>
+              <label className="form-item_description legend_textArea">
+                Descrição:
+                <input className="item_description-area_text text_area" onChange={this.resevDescription}></input>
+              </label>
+              <label className="form-item_status legend_textArea">
+                Status:
+                <input className="item_status-area_text text_area" onChange={this.resevStatus}></input>
+              </label>
+              <div className="form-box_addImg">
+                <label className="box_addImg-item_exibição legend_textArea">
+                  Imagem de exibição:
+                  <input className="item_exibição-text_area text_area" onChange={this.resevImg}></input>
+                </label>
+                <button className="box_addImg-btn_addImg btn_modal">adicinar imagem</button>
+              </div>
+              <label className="form-area_avalieited legend_textArea">
+                Nota:
+                <div className="area_avalieited-box_stars">
+                  <a href="#" onClick={() => this.avaliar(1)}>
+                    <img src={Star0} id="s1"/>
+                  </a>
+                  <a href="#" onClick={() => this.avaliar(2)}>
+                    <img src={Star0} id="s2"/>
+                  </a>
+                  <a href="#" onClick={() => this.avaliar(3)}>
+                    <img src={Star0} id="s3"/>
+                  </a>
+                  <a href="#" onClick={() => this.avaliar(4)}>
+                    <img src={Star0} id="s4"/>
+                  </a>
+                  <a href="#" onClick={() => this.avaliar(5)}>
+                    <img src={Star0} id="s5"/>
+                  </a>
+                </div>
+              </label>
+              <div className="form-box_btnEnd">
+                <button className="box_btnEnd-item_cancel btn_modal" onClick={this.openModal}>cancelar</button>
+                <button className="box_btnEnd-item_send btn_modal">feito</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    )
 
     render(){
         return(
@@ -67,7 +214,7 @@ class HomePage extends React.Component {
                                 </ul>
                             </li>
                             <li className="box_list-box_link">
-                                <a className="box_link-linkitem" href="#">adicionar filme</a>
+                                <a className="box_link-linkitem" onClick={this.openModal} href="#">adicionar filme</a>
                             </li>
                         </ul>
                     </nav>
@@ -79,7 +226,6 @@ class HomePage extends React.Component {
                             <p className="box_movieList-title">{this.state.titleLists}</p>
                             <div className="box_movieList-container">
                                 {this.state.movies.map((item, index) => {
-                                    // console.log(item.img)
                                     return(
                                         <div className="container-box_itemList" key={index}>
                                             <div className="box_itemList-box_img">
@@ -106,6 +252,7 @@ class HomePage extends React.Component {
                         </iframe> */}
                     </section>
                 </main>
+                {this.state.openModal && this.modal()}
             </body>
         )
     }
