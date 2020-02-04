@@ -24,7 +24,7 @@ class HomePage extends React.Component {
             movies: [
                 {
                     name: "Bad boys for live",
-                    note: "5.0",
+                    note: "5",
                     description: "O novo filme da franquia mostrará a polícia de Miami e sua" +
                     "equipe de elite AMMO tentando derrubar Armando Armas (Jacob Scipio)," +
                     "chefe de um cartel de drogas. Armando é um assassino de sangue frio com uma" + 
@@ -37,7 +37,7 @@ class HomePage extends React.Component {
                 },
                 {
                     name: "Deadpoll 2",
-                    note: "5.0",
+                    note: "5",
                     description: "O supersoldado Cable vem do futuro com a missão de assassinar o" +
                     "jovem mutante Russel e o mercenário Deadpool precisa aprender o" +
                     "que é ser herói de verdade para salvá-lo. Para isso, ele recruta seu" + 
@@ -88,7 +88,7 @@ class HomePage extends React.Component {
     }
     saveValue = (movie) => {
         const { movies } = this.state;
-
+        
         movies.push(movie)
         // console.log(movies)
         this.openModal()
@@ -98,37 +98,147 @@ class HomePage extends React.Component {
         e.preventDefault();
         const { name, description, status, img, note } = this.state
         this.saveValue({name, description, status, img, note})
+
+        // this.avaliar({note})
+    }
+
+    saveStar = () => {
+        // console.log(this.state.s1)
+        this.setState({
+            s1: document.getElementById("s1"),
+            s2: document.getElementById("s2"),
+            s3: document.getElementById("s3"),
+            s4: document.getElementById("s4"),
+            s5: document.getElementById("s5"),
+        })
     }
 
     avaliar = (star) => {
-        this.setState({
-            s1: document.getElementById("s1").src,
-            s2: document.getElementById("s2").src,
-            s3: document.getElementById("s3").src,
-            s4: document.getElementById("s4").src,
-            s5: document.getElementById("s5").src,
-        })
-        const { note } = this.state
-        this.saveValue({note})
-        console.log(this.state.s1)
-        // if (star == 5){ 
-        //     if ((this.state.s5.src == Star0) || (this.state.s5.src == "http://localhost:3000/static/media/star0.58c764d9.svg")) {
-        //     this.state.s1.src = Star1;
-        //     this.state.s2.src = Star1;
-        //     this.state.s3.src = Star1;
-        //     this.state.s4.src = Star1;
-        //     this.state.s5.src = Star1;
-        //     note = 5;
+        // const note = score
+        // this.saveValue({note})
+
+        let url = window.location;
+        url = url.toString()
+        // url = url.split("HomePage.js");
+        url = url[0];
+
+        // console.log(score)
+        // console.log(star)
+        if (star == 5){ 
+            // console.log('olaa')
+            console.log(this.state.s5.src)
+            if (this.state.s5.src == 'http://localhost:3000/static/media/star0.58c764d9.svg') {
+                this.setState({
+                    s1:Star1,
+                    s2:Star1,
+                    s3:Star1,
+                    s4:Star1,
+                    s5:Star1,
+                    note: 5
+                })
+                console.log('igual url')
+                // setAttibute(src, Star1)
+            }
+            console.log(this.state.note)
+        } else {
+            this.setState({
+                s1:Star1,
+                s2:Star1,
+                s3:Star1,
+                s4:Star1,
+                s5:Star0,
+                note: 4
+            })
+            console.log(this.state.note)
+        }
+
+        // if (star == 4){ 
+        //     if (this.state.s4 == url + '/img/star0.svg') {
+        //         this.setState({
+        //             s1:Star1,
+        //             s2:Star1,
+        //             s3:Star1,
+        //             s4:Star1,
+        //             s5:Star0,
+        //             note: 4
+        //         })
         //     }
         // } else {
-        //     this.state.s1.src = Star1;
-        //     this.state.s2.src = Star1;
-        //     this.state.s3.src = Star1;
-        //     this.state.s4.src = Star1;
-        //     this.state.s5.src = Star0;
-        //     note = 4;
+        //     this.setState({
+        //         s1:Star1,
+        //         s2:Star1,
+        //         s3:Star1,
+        //         s4:Star0,
+        //         s5:Star0,
+        //         note: 3
+        //     })
         // }
 
+        // if (star == 3){ 
+        //     if (this.state.s3 == url + '/img/star0.svg') {
+        //         this.setState({
+        //             s1:Star1,
+        //             s2:Star1,
+        //             s3:Star1,
+        //             s4:Star0,
+        //             s5:Star0,
+        //             note: 3
+        //         })
+        //     }
+        // } else {
+        //     this.setState({
+        //         s1:Star1,
+        //         s2:Star1,
+        //         s3:Star0,
+        //         s4:Star0,
+        //         s5:Star0,
+        //         note: 2
+        //     })
+        // }
+
+        // if (star == 2){ 
+        //     if (this.state.s2 == url + '/img/star0.svg') {
+        //         this.setState({
+        //             s1:Star1,
+        //             s2:Star1,
+        //             s3:Star0,
+        //             s4:Star0,
+        //             s5:Star0,
+        //             note: 2
+        //         })
+        //     }
+        // } else {
+        //     this.setState({
+        //         s1:Star1,
+        //         s2:Star0,
+        //         s3:Star0,
+        //         s4:Star0,
+        //         s5:Star0,
+        //         note: 1
+        //     })
+        // }
+
+        // if (star == 1){ 
+        //     if (this.state.s1 == url + '/img/star0.svg') {
+        //         this.setState({
+        //             s1:Star1,
+        //             s2:Star0,
+        //             s3:Star0,
+        //             s4:Star0,
+        //             s5:Star0,
+        //             note: 1
+        //         })
+        //     }
+        // } else {
+        //     this.setState({
+        //         s1:Star0,
+        //         s2:Star0,
+        //         s3:Star0,
+        //         s4:Star0,
+        //         s5:Star0,
+        //         note: 0
+        //     })
+        // }
     }
 
     modal = () => (
@@ -142,23 +252,23 @@ class HomePage extends React.Component {
               <p className="box_titleClose-title">Adicionar novo filme:</p>
               <a className="closeModal" href="#"><p className="box_titleClose-close" onClick={this.openModal}>X</p></a>
             </div>
-            <form className="box_addMovie-form" onSubmit={this.addMovie}>
+            <form className="box_addMovie-form" onSubmit={this.addMovie} onLoad={this.saveStar}>
               <label className="form-item_name legend_textArea">
                 Nome:
-                <input className="item_name-area_text text_area" onChange={this.resevName}></input>
+                <input className="item_name-area_text text_area" onChange={this.resevName} required></input>
               </label>
               <label className="form-item_description legend_textArea">
                 Descrição:
-                <input className="item_description-area_text text_area" onChange={this.resevDescription}></input>
+                <input className="item_description-area_text text_area" onChange={this.resevDescription} required></input>
               </label>
               <label className="form-item_status legend_textArea">
                 Status:
-                <input className="item_status-area_text text_area" onChange={this.resevStatus}></input>
+                <input className="item_status-area_text text_area" onChange={this.resevStatus} required></input>
               </label>
               <div className="form-box_addImg">
                 <label className="box_addImg-item_exibição legend_textArea">
                   Imagem de exibição:
-                  <input className="item_exibição-text_area text_area" onChange={this.resevImg}></input>
+                  <input className="item_exibição-text_area text_area" onChange={this.resevImg} required></input>
                 </label>
                 <button className="box_addImg-btn_addImg btn_modal">adicinar imagem</button>
               </div>
